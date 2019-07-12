@@ -5,7 +5,11 @@
     <h2>{{ numero }}</h2>
     <button @click="suma()" v-bind:disabled="checkDisabledSuma">Aumenta</button>
     <button @click="resta()" v-bind:disabled="checkDisabledResta">Resta</button>
-    <input type="number" v-model="numero" name="" id="">
+    <input
+      v-model="numero"
+      type="number"
+      :maxValue="maxValue" :minValue="minValue"
+      :class="{isGreen, isOrange, isRed}"/>
   </div>
 </template>
 <script>
@@ -48,6 +52,18 @@ export default {
     checkDisabledSuma() {
       return this.numero >= this.maxValue;
     },
+    completedPercentage() {
+      return 100 * (this.numero - this.minValue) / (this.maxValue - this.minValue);
+    },
+    isGreen() {
+      return this.completedPercentage <= 33;
+    },
+    isOrange() {
+      return this.completedPercentage > 33 && this.completedPercentage <= 66;
+    },
+    isRed() {
+      return this.completedPercentage > 66;
+    },
   },
   watch: {
     numero(nuevoValor) {
@@ -60,3 +76,19 @@ export default {
   },
 };
 </script>
+
+<style>
+  .disabled {
+    background: white;
+    border: none;
+  }
+  .isRed {
+    background:red;
+  }
+  .isGreen {
+    background:greenyellow;
+  }
+  .isOrange {
+    background:orange;
+  }
+</style>
