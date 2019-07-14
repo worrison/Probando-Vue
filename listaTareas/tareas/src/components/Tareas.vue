@@ -16,15 +16,8 @@
         :key="tarea.id"
         :class="{'bg-success' : tarea.completado , 'bg-primary' :!tarea.completado}"
       >
-      
-        <img v-if="tarea.completado" :src="imagenTerminada"
-          class="card-img-top"
-          alt="..."
-        />
-        <img v-else :src="imagenPendiente"
-          class="card-img-top"
-          alt="..."
-        />
+        <img v-if="tarea.completado" :src="imagenTerminada" class="card-img-top" alt="..." />
+        <img v-else :src="imagenPendiente" class="card-img-top" alt="..." />
         <div class="card-body">
           <h5 class="card-title">{{tarea.nombre}}</h5>
           <p class="card-text">{{tarea.descripcion}}</p>
@@ -37,7 +30,7 @@
 </template>
 
 <script>
-import tareas from '../listadetareas.js'
+import tareas from "../listadetareas.js";
 export default {
   data() {
     return {
@@ -46,9 +39,10 @@ export default {
       nuevatarea: "",
       descripcion: "",
       completado: false,
-      imagenPendiente:'https://static01.nyt.com/images/2015/09/10/us/motherlode-homework-study/motherlode-homework-study-superJumbo.jpg',
-      imagenTerminada:'https://tutorasap.com/wp-content/uploads/2015/01/yes-310x206.png',
-
+      imagenPendiente:
+        "https://static01.nyt.com/images/2015/09/10/us/motherlode-homework-study/motherlode-homework-study-superJumbo.jpg",
+      imagenTerminada:
+        "https://tutorasap.com/wp-content/uploads/2015/01/yes-310x206.png"
     };
   },
   methods: {
