@@ -1,16 +1,21 @@
 <template>
   <div>
-    <input type="text" v-model="nuevatarea" @keyup.enter="addTarea" />
-    <textarea v-model="descripcion" name id cols="50" rows="1"></textarea>
-    <span>
-      Completado
-      <input type="checkbox" v-model="completado" name id />
-    </span>
-    <button @click="addTarea">Add</button>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Tarea y Descripción</span>
+      </div>
+      <input type="text" v-model="nuevatarea" @keyup.enter="addTarea" class="form-control" />
+      <input type="text" v-model="descripcion" aria-label="Last name" class="form-control" />
+      <span class="form-control">
+        Completado
+        <input type="checkbox" v-model="completado" />
+      </span>
+      <button @click="addTarea" class="bg-primary">Add</button>
+    </div>
 
-    <div id="contenedor-listado-tareas" class="d-flex flex-row flex-wrap">
+    <div id="contenedor-listado-tareas" class="d-flex flex-row flex-wrap p-5 justify-content-start">
       <div
-        class="card text-light"
+        class="card text-light m-2"
         style="width: 18rem;"
         v-for="tarea of tareas"
         :key="tarea.id"
@@ -53,6 +58,8 @@ export default {
         completado: this.completado
       });
       this.nuevatarea = "";
+      // console.log(tareas);
+      // this.tareas = tareas;
     },
     borrado(tarea) {
       let index = this.tareas.indexOf(tarea);
